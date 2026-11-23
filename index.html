@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211a15">
+  <meta name="description" content="역사 참견 시점이 tvN STORY 《벌거벗은 한국사3》 제작진께 드리는 역사 유튜브 쇼츠 협업 제안.">
+  <title>역사 참견 시점 · 유튜브 쇼츠 협업 제안</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="역사 참견 시점 · 유튜브 쇼츠 협업 제안">
+  <meta property="og:description" content="tvN STORY 《벌거벗은 한국사3》 제작진께 드리는 역사 유튜브 쇼츠 협업 제안">
+  <meta property="og:url" content="https://hyungrae94.github.io/history-shorts-proposal/">
+  <meta property="og:image" content="https://hyungrae94.github.io/history-shorts-proposal/assets/channel-profile-og.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="책을 든 조선 인물이 그려진 ‘역사 참견 시점’ 채널 프로필">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/channel-profile-favicon.png" sizes="64x64" type="image/png">
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f8f1e6;
+  --ink: #272019;
+  --muted: #635548;
+  --accent: #873e2d;
+  --dark: #211a15;
+  --light: #faefe0;
+  --light-muted: #d9c4ae;
+  --gold: #efbd8d;
+  --rule: #ddcdbc;
+  --rule-dark: #54443a;
+  /* 모든 슬라이드가 공유하는 격자: 같은 좌측 여백, 같은 타이틀 시작 높이, 같은 이미지 패널 */
+  --gutter: clamp(1.5rem, 6vw, 6.5rem);
+  --top: clamp(4rem, 15vh, 8.5rem);
+  --bottom: 7rem;
+  --media: 44%;
+  --gap: 2.4rem;
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.65; word-break: keep-all; }
+h1, h2, h3, p, dl, dd { margin: 0; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: .24em; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+/* 슬라이더: 섹션 하나 = 슬라이드 하나 (가로 scroll-snap) */
+main {
+  display: flex;
+  height: 100vh;
+  height: 100svh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+main::-webkit-scrollbar { display: none; }
+
+/* 슬라이드 공통 레이아웃: 왼쪽 본문 + 오른쪽 9:16 이미지 패널 */
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--media);
+  align-items: start;
+  background: var(--paper);
+  color: var(--ink);
+}
+.slide { --slide-bg: var(--paper); }
+.slide.dark { --slide-bg: var(--dark); background: var(--dark); color: var(--light); }
+.slide-body { padding: var(--top) var(--gutter) var(--bottom); max-width: 56rem; }
+/* 이미지 패널 = 해당 쇼츠 링크 */
+.slide-media {
+  position: sticky;
+  top: 0;
+  display: block;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--dark);
+}
+.slide-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center var(--pos, 50%);
+}
+.slide-media:focus-visible { outline-offset: -4px; }
+/* 이미지 위 짙은 막 + 가운데 유튜브 아이콘·쇼츠 제목·조회수 (항상 노출) */
+.slide-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 15, 12, .55);
+}
+.media-label {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  color: var(--light);
+  text-align: center;
+}
+.media-label img {
+  width: 76px;
+  height: auto;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .35));
+}
+.media-text { display: grid; gap: .45rem; max-width: 22rem; }
+.media-title { font-size: 1.05rem; font-weight: 800; line-height: 1.45; letter-spacing: -.02em; }
+.media-views { color: var(--gold); font-size: .9rem; font-weight: 700; }
+
+/* 타이틀 영역: 모든 슬라이드 동일 구조 (eyebrow → 제목 → 소개) */
+.eyebrow { color: var(--accent); font-size: clamp(.95rem, 1.3vw, 1.08rem); font-weight: 700; letter-spacing: .01em; }
+.dark .eyebrow { color: var(--gold); }
+h1, h2 { margin-top: .7rem; letter-spacing: -.045em; line-height: 1.16; }
+h1 { font-size: clamp(2.8rem, 5.4vw, 5.4rem); letter-spacing: -.055em; }
+h2 { font-size: clamp(2rem, 3.6vw, 3.3rem); }
+.intro { margin-top: 1.1rem; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.18rem); }
+.dark .intro { color: var(--light-muted); }
+
+/* 본문 블록: 타이틀 아래 같은 간격 */
+.content { margin-top: var(--gap); }
+.note { margin-top: 1.3rem; font-weight: 700; color: var(--accent); }
+.dark .note { color: var(--light); }
+
+/* 채널 지표 */
+.result { font-size: 1.1rem; font-weight: 700; }
+.result strong { color: var(--accent); }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.2rem; }
+.metrics > div { display: grid; align-content: start; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.metrics dd { grid-row: 1; font-size: clamp(1.8rem, 3.4vw, 3rem); font-weight: 800; color: var(--accent); letter-spacing: -.045em; line-height: 1.15; }
+.metrics dt { margin-top: .35rem; font-weight: 700; }
+.source { margin-top: 1rem; color: var(--muted); font-size: .9rem; }
+
+/* 카드형 목록 (쇼츠 기획) */
+.format-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
+.format-list > div { border-top: 1px solid var(--rule); padding-top: 1rem; }
+h3 { color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
+.format-list p { margin-top: .5rem; }
+
+/* 표형 목록 (제작 방식 · 협업 제안) — 같은 열 폭/여백 */
+.rows > div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); align-items: center; gap: 1.2rem; border-bottom: 1px solid var(--rule); padding-block: 1.1rem; }
+.rows > div:first-child { border-top: 1px solid var(--rule); }
+.rows dt { display: flex; gap: .8rem; align-items: center; font-weight: 700; }
+.rows dt img { flex: 0 0 auto; width: 36px; height: 36px; object-fit: contain; }
+/* 제작 방식 장: 에이전트 수 + 역할 칩 */
+.agents-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 0; }
+.agent-chips { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+.agent-chips li { padding: .2rem .6rem; border: 1px solid var(--rule); border-radius: 999px; background: rgba(135, 62, 45, .05); color: var(--muted); font-size: .74rem; font-weight: 700; letter-spacing: .01em; }
+/* 제작 방식 장: eyebrow 줄 오른쪽에 AI 도구 로고 (같은 크기·radius 타일, 줄 높이 유지) */
+.eyebrow-row { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.2rem; }
+.tools { list-style: none; margin: 0; padding: 0 0 0 1.2rem; border-left: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: .4rem 1rem; }
+.tools li { display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .88rem; font-weight: 700; line-height: 1; }
+.tools img { width: 26px; height: 26px; padding: 4px; border-radius: 8px; background: #fff; border: 1px solid var(--rule); object-fit: contain; }
+.tools img.logo-dark { padding: 2px; background: #000; border-color: #000; }
+/* 결말 장: 이미지 없이 전체 폭, 3단계 카드 + 맺음말 카드 */
+.closing {
+  grid-template-columns: minmax(0, 1fr);
+  background: radial-gradient(ellipse at 88% 100%, rgba(239, 189, 141, .13), transparent 55%), var(--dark);
+}
+.closing .slide-body { max-width: 76rem; }
+.steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.steps li {
+  padding: 1.15rem 1.25rem 1.25rem;
+  border: 1px solid var(--rule-dark);
+  border-radius: 18px;
+  background: rgba(250, 239, 224, .03);
+}
+.step-no { display: block; color: var(--gold); font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.steps h3 { margin-top: .75rem; color: var(--light); }
+.steps p { margin-top: .5rem; color: var(--light-muted); }
+.signoff {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.6rem 3rem;
+  padding: clamp(1.25rem, 2.2vw, 1.75rem) clamp(1.25rem, 2.4vw, 2rem);
+  border: 1px solid rgba(239, 189, 141, .28);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(239, 189, 141, .14), rgba(239, 189, 141, .03));
+}
+.wish { font-size: clamp(1.3rem, 2.3vw, 1.9rem); font-weight: 800; line-height: 1.45; letter-spacing: -.03em; }
+.signature { margin-top: 1.2rem; display: flex; align-items: center; gap: .7rem; color: var(--light-muted); font-weight: 700; }
+.signature img { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(239, 189, 141, .4); }
+.signoff-actions { display: grid; gap: .7rem; }
+.email-btn, .channel-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  padding: .9rem 1.5rem; border-radius: 999px; font-weight: 800; text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.email-btn { background: var(--gold); color: var(--dark); }
+.email-btn:hover { background: var(--light); }
+.channel-btn { border: 1px solid rgba(239, 189, 141, .5); color: var(--gold); }
+.channel-btn:hover { background: rgba(239, 189, 141, .12); }
+.channel-btn img { width: 22px; height: auto; }
+
+/* 슬라이드 내비게이션 */
+.slider-nav {
+  position: fixed;
+  inset: auto auto 1.4rem var(--gutter);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  padding: .3rem;
+  background: rgba(33, 26, 21, .82);
+  border: 1px solid rgba(239, 189, 141, .3);
+  border-radius: 999px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .18);
+  backdrop-filter: blur(8px);
+}
+/* 아이콘: Lucide (ISC) 인라인 SVG */
+.icon { width: 1.15em; height: 1.15em; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.slider-btn .icon { width: 1.25rem; height: 1.25rem; }
+.slider-btn {
+  display: inline-grid; place-items: center;
+  width: 2.4rem; height: 2.4rem; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; color: var(--light); font-size: 1.2rem; line-height: 1; cursor: pointer;
+  transition: background .2s;
+}
+.slider-btn:hover:not(:disabled) { background: rgba(250, 239, 224, .12); }
+.slider-btn:disabled { opacity: .3; cursor: default; }
+.slider-dots { display: flex; align-items: center; gap: .45rem; padding: 0 .45rem; }
+.slider-dots button {
+  width: .5rem; height: .5rem; padding: 0; border: 0; border-radius: 999px;
+  background: rgba(250, 239, 224, .4); cursor: pointer; transition: width .25s, background .25s;
+}
+.slider-dots button[aria-current="true"] { width: 1.6rem; background: var(--gold); }
+
+@media (max-width: 760px) {
+  .wide { display: none; }
+  :root { --top: 2.2rem; --gap: 1.8rem; --bottom: 1.5rem; }
+  /* 모바일: 이미지 배너(고정 높이) 위 + 본문 아래 → 제목 위치는 슬라이드마다 동일 */
+  .slide { display: flex; flex-direction: column; align-items: stretch; }
+  .slide-media { order: -1; flex: 0 0 auto; position: relative; height: clamp(13rem, 38svh, 20rem); }
+  .slide-media > img { object-position: center var(--mpos, var(--pos, 50%)); }
+  /* 터치 기기는 hover가 없으므로 제목·조회수를 배너 하단에 항상 노출 (얼굴 가리지 않게 아래쪽 그라데이션 위) */
+  .slide-media::after { background: linear-gradient(to bottom, rgba(20, 15, 12, 0) 45%, rgba(20, 15, 12, .85)); }
+  .media-label { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: .8rem; padding: 1rem 1.2rem; text-align: left; }
+  .media-label img { order: 1; width: 38px; }
+  .media-text { gap: .15rem; }
+  .media-title { font-size: .92rem; }
+  .media-views { font-size: .8rem; }
+  /* 모바일 내비: 하단 가운데 떠 있는 pill + 그 뒤로 본문이 자연스럽게 사라지는 페이드 */
+  .slide-body::after {
+    content: "";
+    position: sticky;
+    bottom: 0;
+    display: block;
+    height: 5.5rem;
+    margin: 0 -1.4rem;
+    background: linear-gradient(to bottom, transparent, var(--slide-bg) 70%);
+    pointer-events: none;
+  }
+  .slider-nav { inset: auto auto calc(1rem + env(safe-area-inset-bottom)) 50%; transform: translateX(-50%); }
+  .slide-body { padding-inline: 1.4rem; }
+  .format-list { grid-template-columns: 1fr; gap: 1.1rem; }
+  .rows > div { grid-template-columns: 1fr; gap: .4rem; }
+  /* 모바일: 로고만 한 줄로 (이름은 스크린리더용) → 제목 위치 유지 */
+  .eyebrow-row { flex-wrap: nowrap; gap: .9rem; }
+  .tools { flex-wrap: nowrap; gap: .5rem; padding-left: .9rem; }
+  .tools li span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .steps { grid-template-columns: 1fr; gap: .8rem; }
+  .steps li { padding: .9rem 1rem 1rem; display: grid; grid-template-columns: auto 1fr; column-gap: .9rem; }
+  .step-no { grid-row: span 2; font-size: 1.3rem; padding-top: .15rem; }
+  .steps h3 { margin-top: 0; }
+  .signoff { grid-template-columns: 1fr; padding: 1.1rem; }
+  .metrics { gap: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  main { scroll-behavior: auto; }
+  .slider-dots button, .slider-btn, .email-btn, .channel-btn { transition: none; }
+}
+  </style>
+</head>
+<body>
+  <main>
+    <header class="slide dark" aria-labelledby="hero-heading">
+      <div class="slide-body">
+        <p class="eyebrow">tvN STORY 《벌거벗은 한국사3》</p>
+        <h1 id="hero-heading">함께 만드는<br>역사 유튜브 쇼츠</h1>
+        <p class="intro">저는 유튜브 채널 ‘역사 참견 시점’을 운영합니다.<br class="wide"> 제작진과 함께 방송의 이야기를 쇼츠로 풀어내고 싶습니다.</p>
+      </div>
+      <a class="slide-media" href="https://youtube.com/shorts/nOa0Vekoj18" target="_blank" rel="noopener">
+        <img src="assets/jeongjo.jpg" width="720" height="1280" fetchpriority="high" alt="촛불 앞에서 편지를 읽는 정조의 AI 재현 장면" style="--pos: 59%; --mpos: 42%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">정조는 왜 반대편 신하에게 비밀 편지를 썼을까?</span><span class="media-views">조회수 1,464회</span></span></span>
+      </a>
+    </header>
+
+    <section class="slide" aria-labelledby="profile-heading">
+      <div class="slide-body">
+        <p class="eyebrow">채널 소개</p>
+        <h2 id="profile-heading">역사 참견 시점</h2>
+        <p class="intro">저는 AI 에이전트 팀을 꾸려<br class="wide"> 역사 쇼츠를 만드는 1인 크리에이터입니다.</p>
+        <div class="content">
+          <p class="result">채널 운영 <strong>약 한 달 만에</strong> 조회수 2만 회를 넘겼습니다.</p>
+          <dl class="metrics">
+            <div><dt>채널 조회수</dt><dd>20,313</dd></div>
+            <div><dt>구독자 순증</dt><dd>+48</dd></div>
+            <div><dt>쇼츠 좋아요</dt><dd>392</dd></div>
+          </dl>
+          <p class="source">최근 28일(2026.10.25~11.21) YouTube Studio 집계</p>
+        </div>
+      </div>
+      <a class="slide-media" href="https://youtube.com/shorts/4aX-MPY2uvk" target="_blank" rel="noopener">
+        <img src="assets/han.jpg" width="720" height="1280" loading="lazy" alt="조선 궁중 연회의 AI 재현 장면" style="--pos: 56%; --mpos: 48%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">눈치가 밥이 아니라 권력을 먹여 준 남자, 한명회</span><span class="media-views">조회수 3,415회</span></span></span>
+      </a>
+    </section>
+
+    <section class="slide" aria-labelledby="process-heading">
+      <div class="slide-body">
+        <div class="eyebrow-row">
+          <p class="eyebrow">제작 방식</p>
+          <ul class="tools" aria-label="사용 도구">
+            <li><img src="assets/claude-logo.png" width="40" height="40" loading="lazy" alt=""><span>Claude Code</span></li>
+            <li><img src="assets/openai-mark.png" width="40" height="40" loading="lazy" alt=""><span>GPT</span></li>
+            <li><img class="logo-dark" src="assets/flow-logo.png" width="40" height="40" loading="lazy" alt=""><span>Google Flow</span></li>
+          </ul>
+        </div>
+        <h2 id="process-heading">1명의 연출,<br>9개의 AI 에이전트</h2>
+        <p class="intro">조사·대본·이미지·검수를 에이전트가 나눠 맡아 동시에 진행해,<br class="wide"> 한 편을 만드는 시간이 짧습니다.</p>
+        <div class="content">
+          <dl class="metrics agents-metrics">
+            <div><dt>역할별 AI 에이전트</dt><dd>9개</dd></div>
+            <div><dt>조사·생성·검수 동시 진행</dt><dd>병렬</dd></div>
+          </dl>
+          <ul class="agent-chips" aria-label="에이전트 역할">
+            <li>Producer</li><li>Research</li><li>Hook &amp; Script</li><li>Script Lessons</li><li>Image Assets</li><li>Image QA</li><li>Video Prompts</li><li>Upload Info</li><li>Notion Publish</li>
+          </ul>
+        </div>
+        <p class="note">사료·고증 확인과 최종 편집은 제가 직접 합니다.</p>
+      </div>
+      <a class="slide-media" href="https://youtube.com/shorts/OQt04UnZoAI" target="_blank" rel="noopener">
+        <img src="assets/hwanghui.jpg" width="720" height="1280" loading="lazy" alt="사직서 더미를 앞에 두고 웃는 세종의 AI 재현 장면" style="--pos: 50%; --mpos: 38%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">세종의 해결책은 재택근무? 황희의 은퇴 도전기</span><span class="media-views">조회수 3,242회</span></span></span>
+      </a>
+    </section>
+
+    <section class="slide" aria-labelledby="formats-heading">
+      <div class="slide-body">
+        <p class="eyebrow">쇼츠 기획</p>
+        <h2 id="formats-heading">《벌거벗은 한국사3》와<br>만들고 싶은 쇼츠</h2>
+        <p class="intro">‘역사 참견 시점’에서 쌓은 제작 경험을 바탕으로,<br class="wide"> 제작진과 함께 유튜브 시청자에게 새롭게 들려줄 이야기를 찾고 싶습니다.</p>
+        <div class="content format-list">
+          <div><h3>방송 전 예고 쇼츠</h3><p>회차의 핵심 질문 하나로 시작해 어떤 이야기가 펼쳐질지 예고합니다.</p></div>
+          <div><h3>방송 후 연계 쇼츠</h3><p>본편 속 인물이나 사건에서 더 궁금한 대목을 사료로 풀어냅니다.</p></div>
+          <div><h3>그 밖의 쇼츠 기획</h3><p>인물 소개나 역사 퀴즈처럼, 다루고 싶은 소재에 맞춰 쇼츠 형식을 함께 정할 수 있습니다.</p></div>
+        </div>
+      </div>
+      <a class="slide-media" href="https://youtube.com/shorts/h2muW5sv4uw" target="_blank" rel="noopener">
+        <img src="assets/munjeong.jpg" width="720" height="1280" loading="lazy" alt="문정왕후 앞에 엎드려 예를 올리는 인종의 AI 재현 장면" style="--pos: 60%; --mpos: 52%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">조선에서 가장 착했던 왕, 왜 새엄마 눈치를 봤을까?</span><span class="media-views">조회수 1,838회</span></span></span>
+      </a>
+    </section>
+
+    <section class="slide dark closing" id="contact" aria-labelledby="contact-heading">
+      <div class="slide-body">
+        <p class="eyebrow">협업 제안</p>
+        <h2 id="contact-heading">첫 협업은 유튜브 쇼츠 한 편</h2>
+        <ol class="content steps">
+          <li><span class="step-no">01</span><h3>첫 편의 방향</h3><p>관심 있는 회차나 소재를 알려주시면 첫 쇼츠의 가제와 영상 구성안을 정리해 드리겠습니다.</p></li>
+          <li><span class="step-no">02</span><h3>상세 제작안</h3><p>구성안을 바탕으로 제작 방식과 일정, 제작비와 수정 범위를 구체적으로 제안드리겠습니다.</p></li>
+          <li><span class="step-no">03</span><h3>연락 방법</h3><p>협업이나 제작 과정이 궁금하시면 아래 메일로 편하게 연락 부탁드립니다.</p></li>
+        </ol>
+        <div class="signoff">
+          <div>
+            <p class="wish">제작진과 함께 시청자의 기억에 오래 남을<br class="wide"> 역사 쇼츠를 만들 수 있기를 진심으로 바랍니다.</p>
+            <p class="signature"><img src="assets/channel-profile.png" width="80" height="80" alt="">역사 참견 시점 드림</p>
+          </div>
+          <div class="signoff-actions">
+            <a class="email-btn" href="mailto:woohr1109@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>woohr1109@gmail.com</a>
+            <a class="channel-btn" href="https://www.youtube.com/channel/UC0MRTya2b3rdw8fb60_3U1g" target="_blank" rel="noopener"><img src="assets/youtube-icon.png" width="33" height="23" alt="">채널 둘러보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <nav class="slider-nav" aria-label="슬라이드 이동">
+    <button class="slider-btn" type="button" data-step="-1" aria-label="이전 슬라이드"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="slider-dots"></div>
+    <button class="slider-btn" type="button" data-step="1" aria-label="다음 슬라이드"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+  </nav>
+  <script>
+    (function () {
+      var main = document.querySelector('main');
+      var slides = Array.prototype.slice.call(main.children);
+      var dotsBox = document.querySelector('.slider-dots');
+      var prev = document.querySelector('[data-step="-1"]');
+      var next = document.querySelector('[data-step="1"]');
+      var dots = slides.map(function (slide, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', (i + 1) + '번째 슬라이드');
+        b.addEventListener('click', function () { go(i); });
+        dotsBox.appendChild(b);
+        return b;
+      });
+      function current() { return Math.round(main.scrollLeft / main.clientWidth); }
+      function go(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        main.scrollTo({ left: i * main.clientWidth });
+      }
+      var last = 0;
+      function sync() {
+        var c = current();
+        last = c;
+        dots.forEach(function (d, i) { d.setAttribute('aria-current', i === c ? 'true' : 'false'); });
+        prev.disabled = c === 0;
+        next.disabled = c === slides.length - 1;
+      }
+      prev.addEventListener('click', function () { go(current() - 1); });
+      next.addEventListener('click', function () { go(current() + 1); });
+      main.addEventListener('scroll', sync, { passive: true });
+      // 리사이즈 시 현재 슬라이드 위치 유지
+      window.addEventListener('resize', function () { main.style.scrollBehavior = 'auto'; main.scrollLeft = last * main.clientWidth; main.style.scrollBehavior = ''; });
+      document.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(current() + 1); }
+        else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(current() - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); go(0); }
+        else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+      });
+      sync();
+    })();
+  </script>
+</body>
+</html>

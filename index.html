@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#211a15">
-  <meta name="description" content="역사 참견 시점이 tvN STORY 《벌거벗은 한국사3》 제작진께 드리는 역사 유튜브 쇼츠 협업 제안.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="tvN STORY 《벌거벗은 한국사3》 제작진께: 방송 화면 없이 만드는 회차 연계 역사 쇼츠, 무상 시범 1편 제안.">
   <title>역사 참견 시점 · 유튜브 쇼츠 협업 제안</title>
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:title" content="역사 참견 시점 · 유튜브 쇼츠 협업 제안">
-  <meta property="og:description" content="tvN STORY 《벌거벗은 한국사3》 제작진께 드리는 역사 유튜브 쇼츠 협업 제안">
+  <meta property="og:description" content="방송 화면 없이 만드는 《벌거벗은 한국사3》 회차 연계 쇼츠, 무상 시범 1편 제안">
   <meta property="og:url" content="https://hyung-rae.github.io/history-shorts-proposal/">
   <meta property="og:image" content="https://hyung-rae.github.io/history-shorts-proposal/assets/channel-profile-og.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -32,11 +33,11 @@
   --rule: #ddcdbc;
   --rule-dark: #54443a;
   /* 모든 슬라이드가 공유하는 격자: 같은 좌측 여백, 같은 타이틀 시작 높이, 같은 이미지 패널 */
-  --gutter: clamp(1.5rem, 6vw, 6.5rem);
-  --top: clamp(4rem, 15vh, 8.5rem);
+  --gutter: clamp(1.5rem, 4.5vw, 4.5rem);
+  --top: clamp(2.5rem, 9vh, 5rem);
   --bottom: 7rem;
   --media: 44%;
-  --gap: 2.4rem;
+  --gap: 1.8rem;
   font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -120,7 +121,6 @@ main::-webkit-scrollbar { display: none; }
 }
 .media-text { display: grid; gap: .45rem; max-width: 22rem; }
 .media-title { font-size: 1.05rem; font-weight: 800; line-height: 1.45; letter-spacing: -.02em; }
-.media-views { color: var(--gold); font-size: .9rem; font-weight: 700; }
 
 /* 타이틀 영역: 모든 슬라이드 동일 구조 (eyebrow → 제목 → 소개) */
 .eyebrow { color: var(--accent); font-size: clamp(.95rem, 1.3vw, 1.08rem); font-weight: 700; letter-spacing: .01em; }
@@ -128,7 +128,7 @@ main::-webkit-scrollbar { display: none; }
 h1, h2 { margin-top: .7rem; letter-spacing: -.045em; line-height: 1.16; }
 h1 { font-size: clamp(2.8rem, 5.4vw, 5.4rem); letter-spacing: -.055em; }
 h2 { font-size: clamp(2rem, 3.6vw, 3.3rem); }
-.intro { margin-top: 1.1rem; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.18rem); }
+.intro { margin-top: .8rem; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.18rem); }
 .dark .intro { color: var(--light-muted); }
 
 /* 본문 블록: 타이틀 아래 같은 간격 */
@@ -144,6 +144,22 @@ h2 { font-size: clamp(2rem, 3.6vw, 3.3rem); }
 .metrics dd { grid-row: 1; font-size: clamp(1.8rem, 3.4vw, 3rem); font-weight: 800; color: var(--accent); letter-spacing: -.045em; line-height: 1.15; }
 .metrics dt { margin-top: .35rem; font-weight: 700; }
 .source { margin-top: 1rem; color: var(--muted); font-size: .9rem; }
+.metrics.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hint { margin-top: 2rem; display: flex; align-items: center; gap: .5rem; color: var(--gold); font-size: .95rem; font-weight: 700; }
+
+/* 샘플 기획안 카드 */
+.samples { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.6rem; }
+.sample { border-top: 1px solid var(--rule); padding-top: 1rem; }
+.sample-tag { color: var(--muted); font-size: .85rem; font-weight: 700; }
+.cuts { list-style: none; margin: .8rem 0 0; padding: 0; display: grid; gap: .65rem; }
+.cuts li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); gap: .6rem; align-items: baseline; }
+.cuts b { color: var(--accent); font-size: .8rem; font-weight: 800; }
+.cuts p { font-size: .95rem; }
+.sample-src { margin-top: .9rem; padding-top: .6rem; border-top: 1px dashed var(--rule); color: var(--muted); font-size: .8rem; }
+
+/* 이미지 없는 전체 폭 장 (협업 조건) */
+.full { grid-template-columns: minmax(0, 1fr); }
+.full .slide-body { max-width: 76rem; }
 
 /* 카드형 목록 (쇼츠 기획) */
 .format-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
@@ -152,15 +168,12 @@ h3 { color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
 .format-list p { margin-top: .5rem; }
 
 /* 표형 목록 (제작 방식 · 협업 제안) — 같은 열 폭/여백 */
-.rows > div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); align-items: center; gap: 1.2rem; border-bottom: 1px solid var(--rule); padding-block: 1.1rem; }
+.rows > div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); align-items: center; gap: 1.2rem; border-bottom: 1px solid var(--rule); padding-block: .8rem; }
 .rows > div:first-child { border-top: 1px solid var(--rule); }
 .rows dt { display: flex; gap: .8rem; align-items: center; font-weight: 700; }
 .rows dt img { flex: 0 0 auto; width: 36px; height: 36px; object-fit: contain; }
-/* 제작 방식 장: 에이전트 수 + 역할 칩 */
-.agents-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 0; }
-.agent-chips { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
-.agent-chips li { padding: .2rem .6rem; border: 1px solid var(--rule); border-radius: 999px; background: rgba(135, 62, 45, .05); color: var(--muted); font-size: .74rem; font-weight: 700; letter-spacing: .01em; }
-/* 제작 방식 장: eyebrow 줄 오른쪽에 AI 도구 로고 (같은 크기·radius 타일, 줄 높이 유지) */
+.rows dd { margin: 0; }
+/* 채널 소개 장: eyebrow 줄 오른쪽에 AI 도구 로고 (보조 근거, 같은 크기·radius 타일) */
 .eyebrow-row { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.2rem; }
 .tools { list-style: none; margin: 0; padding: 0 0 0 1.2rem; border-left: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: .4rem 1rem; }
 .tools li { display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .88rem; font-weight: 700; line-height: 1; }
@@ -172,7 +185,7 @@ h3 { color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
   background: radial-gradient(ellipse at 88% 100%, rgba(239, 189, 141, .13), transparent 55%), var(--dark);
 }
 .closing .slide-body { max-width: 76rem; }
-.steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1.2rem; }
 .steps li {
   padding: 1.15rem 1.25rem 1.25rem;
   border: 1px solid var(--rule-dark);
@@ -254,7 +267,6 @@ h3 { color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
   .media-label img { order: 1; width: 38px; }
   .media-text { gap: .15rem; }
   .media-title { font-size: .92rem; }
-  .media-views { font-size: .8rem; }
   /* 모바일 내비: 하단 가운데 떠 있는 pill + 그 뒤로 본문이 자연스럽게 사라지는 페이드 */
   .slide-body::after {
     content: "";
@@ -280,6 +292,16 @@ h3 { color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
   .steps h3 { margin-top: 0; }
   .signoff { grid-template-columns: 1fr; padding: 1.1rem; }
   .metrics { gap: .7rem; }
+  .hint { margin-top: 1.2rem; }
+}
+/* 인쇄·PDF 저장: 슬라이드를 세로로 한 장씩, 이미지 패널·내비 제외 */
+@media print {
+  html, body { height: auto; overflow: visible; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main { display: block; height: auto; overflow: visible; }
+  .slide { display: block; height: auto; overflow: visible; break-after: page; }
+  .slide-media, .slider-nav, .hint, .slide-body::after { display: none; }
+  .slide-body { max-width: none; padding: 2.5rem 2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   main { scroll-behavior: auto; }
@@ -291,96 +313,130 @@ h3 { color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
   <main>
     <header class="slide dark" aria-labelledby="hero-heading">
       <div class="slide-body">
-        <p class="eyebrow">tvN STORY 《벌거벗은 한국사3》</p>
-        <h1 id="hero-heading">함께 만드는<br>역사 유튜브 쇼츠</h1>
-        <p class="intro">저는 유튜브 채널 ‘역사 참견 시점’을 운영합니다.<br class="wide"> 제작진과 함께 방송의 이야기를 쇼츠로 풀어내고 싶습니다.</p>
+        <p class="eyebrow">tvN STORY 《벌거벗은 한국사3》 제작진께</p>
+        <h1 id="hero-heading">회차 연계 쇼츠,<br>시범 1편을 제안합니다</h1>
+        <p class="intro">방송 화면 없이 사료와 AI 재구성 장면으로 만든 역사 쇼츠를<br class="wide"> tvN 채널에 올릴 수 있도록 제작해 드립니다. 첫 편은 무상으로 만듭니다.</p>
+        <p class="hint">옆으로 넘기면 샘플 기획안과 진행 방식이 이어집니다 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></p>
       </div>
-      <a class="slide-media" href="https://youtube.com/shorts/nOa0Vekoj18" target="_blank" rel="noopener">
-        <img src="assets/jeongjo.jpg" width="720" height="1280" fetchpriority="high" alt="촛불 앞에서 편지를 읽는 정조의 AI 재현 장면" style="--pos: 59%; --mpos: 42%">
-        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">정조는 왜 반대편 신하에게 비밀 편지를 썼을까?</span><span class="media-views">조회수 1,464회</span></span></span>
+      <a class="slide-media" href="https://youtube.com/shorts/4aX-MPY2uvk" target="_blank" rel="noopener">
+        <img src="assets/han.jpg" width="720" height="1280" fetchpriority="high" alt="조선 궁중 연회의 AI 재현 장면" style="--pos: 56%; --mpos: 48%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">눈치가 밥이 아니라 권력을 먹여 준 남자, 한명회</span></span></span>
       </a>
     </header>
 
-    <section class="slide" aria-labelledby="profile-heading">
+    <section class="slide" aria-labelledby="value-heading">
       <div class="slide-body">
-        <p class="eyebrow">채널 소개</p>
-        <h2 id="profile-heading">역사 참견 시점</h2>
-        <p class="intro">저는 AI 에이전트 팀을 꾸려<br class="wide"> 역사 쇼츠를 만드는 1인 크리에이터입니다.</p>
-        <div class="content">
-          <p class="result">채널 운영 <strong>약 한 달 만에</strong> 조회수 2만 회를 넘겼습니다.</p>
-          <dl class="metrics">
-            <div><dt>채널 조회수</dt><dd>20,313</dd></div>
-            <div><dt>구독자 순증</dt><dd>+48</dd></div>
-            <div><dt>쇼츠 좋아요</dt><dd>392</dd></div>
-          </dl>
-          <p class="source">최근 28일(2026.10.25~11.21) YouTube Studio 집계</p>
+        <p class="eyebrow">제안 배경</p>
+        <h2 id="value-heading">방송 클립과 겹치지 않는<br>새 쇼츠 한 줄기</h2>
+        <p class="intro">방송 클립이 본편을 잘라 보여 준다면, 이 쇼츠는 회차 앞뒤의 이야기를 따로 만들어<br class="wide"> 아직 프로그램을 모르는 시청자를 본편으로 안내합니다.</p>
+        <div class="content format-list">
+          <div><h3>방송에 다 못 담은 맥락</h3><p>회차 주제의 앞뒤 사건과 인물을 사료로 풀어, 본편과 겹치지 않는 영상을 더합니다.</p></div>
+          <div><h3>권리 부담이 적은 소재</h3><p>방송 화면·로고·출연자 초상 없이, 재구성한 장면으로만 만듭니다.</p></div>
+          <div><h3>회차 일정에 맞춘 속도</h3><p>방송 전 예고와 방송 후 연계를 회차 일정에 맞춰 만들 수 있습니다.</p></div>
         </div>
+        <p class="note">쇼츠마다 회차·방송 시간·다시보기 안내를 자막과 고정 댓글에 넣어 본편으로 연결합니다.</p>
       </div>
-      <a class="slide-media" href="https://youtube.com/shorts/4aX-MPY2uvk" target="_blank" rel="noopener">
-        <img src="assets/han.jpg" width="720" height="1280" loading="lazy" alt="조선 궁중 연회의 AI 재현 장면" style="--pos: 56%; --mpos: 48%">
-        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">눈치가 밥이 아니라 권력을 먹여 준 남자, 한명회</span><span class="media-views">조회수 3,415회</span></span></span>
+      <a class="slide-media" href="https://youtube.com/shorts/OQt04UnZoAI" target="_blank" rel="noopener">
+        <img src="assets/hwanghui.jpg" width="720" height="1280" loading="lazy" alt="사직서 더미를 앞에 두고 웃는 세종의 AI 재현 장면" style="--pos: 50%; --mpos: 38%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">세종의 해결책은 재택근무? 황희의 은퇴 도전기</span></span></span>
       </a>
     </section>
 
-    <section class="slide" aria-labelledby="process-heading">
+    <section class="slide" aria-labelledby="profile-heading">
       <div class="slide-body">
         <div class="eyebrow-row">
-          <p class="eyebrow">제작 방식</p>
+          <p class="eyebrow">채널 소개</p>
           <ul class="tools" aria-label="사용 도구">
             <li><img src="assets/claude-logo.png" width="40" height="40" loading="lazy" alt=""><span>Claude Code</span></li>
             <li><img src="assets/openai-mark.png" width="40" height="40" loading="lazy" alt=""><span>GPT</span></li>
             <li><img class="logo-dark" src="assets/flow-logo.png" width="40" height="40" loading="lazy" alt=""><span>Google Flow</span></li>
           </ul>
         </div>
-        <h2 id="process-heading">1명의 연출,<br>9개의 AI 에이전트</h2>
-        <p class="intro">조사·대본·이미지·검수를 에이전트가 나눠 맡아 동시에 진행해,<br class="wide"> 한 편을 만드는 시간이 짧습니다.</p>
+        <h2 id="profile-heading">역사 참견 시점</h2>
+        <p class="intro">AI 기반 제작 워크플로로 자료 조사, 대본 구성, 시각 자료 제작을 효율화합니다.<br class="wide"> 역사적 사실과 자료 출처는 직접 검증하며, 최종 연출과 편집은 사람이 책임집니다.</p>
         <div class="content">
-          <dl class="metrics agents-metrics">
-            <div><dt>역할별 AI 에이전트</dt><dd>9개</dd></div>
-            <div><dt>조사·생성·검수 동시 진행</dt><dd>병렬</dd></div>
+          <p class="result">최근 28일 동안 쇼츠 조회수 <strong>2만 회</strong>를 넘겼습니다.</p>
+          <dl class="metrics two">
+            <div><dt>채널 조회수 (28일)</dt><dd>20,313</dd></div>
+            <div><dt>최고 조회 쇼츠 (한명회 편)</dt><dd>3,415</dd></div>
           </dl>
-          <ul class="agent-chips" aria-label="에이전트 역할">
-            <li>Producer</li><li>Research</li><li>Hook &amp; Script</li><li>Script Lessons</li><li>Image Assets</li><li>Image QA</li><li>Video Prompts</li><li>Upload Info</li><li>Notion Publish</li>
-          </ul>
+          <p class="source">2026.10.25~11.21 YouTube Studio 집계</p>
         </div>
-        <p class="note">사료·고증 확인과 최종 편집은 제가 직접 합니다.</p>
-      </div>
-      <a class="slide-media" href="https://youtube.com/shorts/OQt04UnZoAI" target="_blank" rel="noopener">
-        <img src="assets/hwanghui.jpg" width="720" height="1280" loading="lazy" alt="사직서 더미를 앞에 두고 웃는 세종의 AI 재현 장면" style="--pos: 50%; --mpos: 38%">
-        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">세종의 해결책은 재택근무? 황희의 은퇴 도전기</span><span class="media-views">조회수 3,242회</span></span></span>
-      </a>
-    </section>
-
-    <section class="slide" aria-labelledby="formats-heading">
-      <div class="slide-body">
-        <p class="eyebrow">쇼츠 기획</p>
-        <h2 id="formats-heading">《벌거벗은 한국사3》와<br>만들고 싶은 쇼츠</h2>
-        <p class="intro">‘역사 참견 시점’에서 쌓은 제작 경험을 바탕으로,<br class="wide"> 제작진과 함께 유튜브 시청자에게 새롭게 들려줄 이야기를 찾고 싶습니다.</p>
-        <div class="content format-list">
-          <div><h3>방송 전 예고 쇼츠</h3><p>회차의 핵심 질문 하나로 시작해 어떤 이야기가 펼쳐질지 예고합니다.</p></div>
-          <div><h3>방송 후 연계 쇼츠</h3><p>본편 속 인물이나 사건에서 더 궁금한 대목을 사료로 풀어냅니다.</p></div>
-          <div><h3>그 밖의 쇼츠 기획</h3><p>인물 소개나 역사 퀴즈처럼, 다루고 싶은 소재에 맞춰 쇼츠 형식을 함께 정할 수 있습니다.</p></div>
-        </div>
+        <p class="note">대본의 문장마다 실록·연구 출처를 연결한 근거 표를 만들고, 사실·추정·설화를 구분해 씁니다.</p>
       </div>
       <a class="slide-media" href="https://youtube.com/shorts/h2muW5sv4uw" target="_blank" rel="noopener">
         <img src="assets/munjeong.jpg" width="720" height="1280" loading="lazy" alt="문정왕후 앞에 엎드려 예를 올리는 인종의 AI 재현 장면" style="--pos: 60%; --mpos: 52%">
-        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">조선에서 가장 착했던 왕, 왜 새엄마 눈치를 봤을까?</span><span class="media-views">조회수 1,838회</span></span></span>
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">조선에서 가장 착했던 왕, 왜 새엄마 눈치를 봤을까?</span></span></span>
       </a>
+    </section>
+
+    <section class="slide" aria-labelledby="samples-heading">
+      <div class="slide-body">
+        <p class="eyebrow">샘플 기획안</p>
+        <h2 id="samples-heading">《벌거벗은 한국사3》 회차로<br>미리 짜 본 두 편</h2>
+        <p class="intro">실제 방송 회차를 골라 컷 흐름까지 짜 보았습니다.<br class="wide"> 두 편 모두 방송 화면과 출연자 초상은 쓰지 않습니다.</p>
+        <div class="content samples">
+          <article class="sample">
+            <p class="sample-tag">방송 전 예고 · 8회 「조선을 살린 정조의 외교 전쟁」 · 11.26(목)</p>
+            <ol class="cuts">
+              <li><b>훅</b><h3>“이 편지는 보는 즉시 불에 태워라.” 그런데 왜 297통이나 남았을까?</h3></li>
+              <li><b>전개</b><p>정조는 비밀 편지로 신하가 조정에서 무엇을 아뢸지 미리 맞추기도 했습니다.</p></li>
+              <li><b>전환</b><p>나라 밖 정보도 챙겼습니다. 청나라에 다녀온 사신은 황제의 근황과 민심을 따로 보고했습니다.</p></li>
+              <li><b>마무리</b><p>“정조의 외교 정보전은 11월 26일 밤 8시, 《벌거벗은 한국사3》에서.”</p></li>
+            </ol>
+            <p class="sample-src">근거 · 정조 어찰첩(보물, 국립중앙박물관) · 『정조실록』 정조 21년 10월 7일, 정조 11년 2월 25일</p>
+          </article>
+          <article class="sample">
+            <p class="sample-tag">방송 후 연계 · 1회 「단종을 둘러싼 형제의 엇갈린 운명」 · 10.8</p>
+            <ol class="cuts">
+              <li><b>훅</b><h3>“수양대군의 친동생은 왜 형이 아니라 조카 편에 섰을까?”</h3></li>
+              <li><b>전개</b><p>세종의 여섯째 아들 금성대군. 유배지 순흥에서 부사 이보흠과 단종 복위를 꾀했습니다.</p></li>
+              <li><b>전환</b><p>거사 전에 고발로 무너졌고, 1457년 10월 21일 금성대군에게 사사 명령이 내려집니다. 같은 날 실록에는 단종의 죽음도 적혔습니다.</p></li>
+              <li><b>마무리</b><p>“형제의 엇갈린 운명 전체는 《벌거벗은 한국사3》 1회 다시보기에서.”</p></li>
+            </ol>
+            <p class="sample-src">근거 · 『세조실록』 세조 3년(1457) 10월 9일, 10월 21일</p>
+          </article>
+        </div>
+      </div>
+      <a class="slide-media" href="https://youtube.com/shorts/nOa0Vekoj18" target="_blank" rel="noopener">
+        <img src="assets/jeongjo.jpg" width="720" height="1280" loading="lazy" alt="촛불 앞에서 편지를 읽는 정조의 AI 재현 장면" style="--pos: 59%; --mpos: 42%">
+        <span class="media-label"><img src="assets/youtube-icon.png" width="99" height="69" alt=""><span class="media-text"><span class="media-title">정조는 왜 반대편 신하에게 비밀 편지를 썼을까?</span></span></span>
+      </a>
+    </section>
+
+    <section class="slide full" aria-labelledby="terms-heading">
+      <div class="slide-body">
+        <p class="eyebrow">협업 조건 (초안)</p>
+        <h2 id="terms-heading">제가 먼저 제안드리는 기본값</h2>
+        <p class="intro">세부 조건은 제작진과 협의해 정합니다.</p>
+        <dl class="content rows">
+          <div><dt>게시 채널</dt><dd>tvN STORY 공식 채널 게시를 우선으로 제작합니다. 원하시면 ‘역사 참견 시점’ 채널에도 함께 올릴 수 있습니다.</dd></div>
+          <div><dt>비용</dt><dd>시범 1편은 무상으로 제작합니다. 2편부터는 결과를 보고 편당 제작비를 협의합니다.</dd></div>
+          <div><dt>결과물 활용</dt><dd>완성 영상과 자막 파일을 드리고, 제작진이 게시·재활용할 수 있게 합니다. 세부 권리는 협의해 정합니다.</dd></div>
+          <div><dt>검수</dt><dd>구성안과 완성본을 제작진이 사실·브랜드 관점에서 검수하고, 승인한 영상만 공개합니다.</dd></div>
+          <div><dt>사용 소재</dt><dd>방송 화면, 프로그램 로고, 출연자 초상은 쓰지 않습니다. 필요하면 사전 승인을 받아 씁니다.</dd></div>
+          <div><dt>표시</dt><dd>AI로 재구성한 장면임을 설명란에 밝히고 YouTube 합성 콘텐츠 표시를 따릅니다. 방송사 표시 기준이 있으면 그대로 따릅니다.</dd></div>
+          <div><dt>미공개 정보</dt><dd>방송 전 예고용으로 받은 자료는 방송 전까지 외부에 공유하지 않습니다.</dd></div>
+          <div><dt>성과 확인</dt><dd>게시 2주 뒤 조회수와 시청 지속률을 함께 보고 다음 편 방향을 정합니다.</dd></div>
+        </dl>
+      </div>
     </section>
 
     <section class="slide dark closing" id="contact" aria-labelledby="contact-heading">
       <div class="slide-body">
-        <p class="eyebrow">협업 제안</p>
-        <h2 id="contact-heading">첫 협업은 유튜브 쇼츠 한 편</h2>
+        <p class="eyebrow">진행 방식</p>
+        <h2 id="contact-heading">답장 주시면 이렇게 진행합니다</h2>
         <ol class="content steps">
-          <li><span class="step-no">01</span><h3>첫 편의 방향</h3><p>관심 있는 회차나 소재를 알려주시면 첫 쇼츠의 가제와 영상 구성안을 정리해 드리겠습니다.</p></li>
-          <li><span class="step-no">02</span><h3>상세 제작안</h3><p>구성안을 바탕으로 제작 방식과 일정, 제작비와 수정 범위를 구체적으로 제안드리겠습니다.</p></li>
-          <li><span class="step-no">03</span><h3>연락 방법</h3><p>협업이나 제작 과정이 궁금하시면 아래 메일로 편하게 연락 부탁드립니다.</p></li>
+          <li><span class="step-no">01</span><h3>회신</h3><p>관심 있는 회차를 알려 주시거나 앞의 샘플 중 하나를 골라 주세요.</p></li>
+          <li><span class="step-no">02</span><h3>짧은 통화</h3><p>15분 정도 통화로 톤, 검수 범위, 게시 일정을 맞춥니다.</p></li>
+          <li><span class="step-no">03</span><h3>구성안 확인</h3><p>대본, 장면 구성, 근거 표를 먼저 보내 드리고 확인을 받습니다.</p></li>
+          <li><span class="step-no">04</span><h3>완성본 검수</h3><p>완성 영상을 보내 드리고, 제작진 의견을 반영해 수정합니다.</p></li>
+          <li><span class="step-no">05</span><h3>게시·성과 공유</h3><p>승인된 영상을 게시하고, 2주 뒤 결과를 함께 봅니다.</p></li>
         </ol>
         <div class="signoff">
           <div>
-            <p class="wish">제작진과 함께 시청자의 기억에 오래 남을<br class="wide"> 역사 쇼츠를 만들 수 있기를 진심으로 바랍니다.</p>
-            <p class="signature"><img src="assets/channel-profile.png" width="80" height="80" alt="">역사 참견 시점 드림</p>
+            <p class="wish">방송이 끝난 뒤에도 시청자가<br class="wide"> 《벌거벗은 한국사》를 다시 찾게 만드는 쇼츠를 만들겠습니다.</p>
+            <p class="signature"><img src="assets/channel-profile.png" width="80" height="80" alt="">역사 참견 시점 · 우형래 드림</p>
           </div>
           <div class="signoff-actions">
             <a class="email-btn" href="mailto:woohr1109@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>woohr1109@gmail.com</a>

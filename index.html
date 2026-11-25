@@ -135,7 +135,7 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
 .tools img { width: 1.7em; height: 1.7em; padding: .25em; border-radius: .5em; background: #fff; border: 1px solid var(--rule); object-fit: contain; }
 .tools img.logo-dark { padding: .12em; background: #000; border-color: #000; }
 .flow { width: 100%; border-collapse: collapse; }
-.flow th, .flow td { padding: .85em 1em .85em 0; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.flow th, .flow td { padding: .85em 1em .85em 0; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: middle; }
 .flow thead th { padding-block: 0 .6em; color: var(--muted); font-size: .8em; font-weight: 700; }
 .flow tbody th { width: 9em; font-weight: 800; }
 .flow tbody th span { display: block; color: var(--accent); font-size: .75em; font-weight: 800; letter-spacing: .04em; }
@@ -172,17 +172,26 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
 .wish { font-size: 1.7em; font-weight: 800; line-height: 1.45; letter-spacing: -.03em; }
 .signature { margin-top: 1em; display: flex; align-items: center; gap: .7em; color: var(--light-muted); font-weight: 700; }
 .signature img { width: 2.2em; height: 2.2em; border-radius: 50%; border: 1px solid rgba(239, 189, 141, .4); }
-.signoff-actions { display: grid; gap: .7em; }
-.email-btn, .channel-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .55em;
-  padding: .9em 1.5em; border-radius: 999px; font-weight: 800; text-decoration: none;
+/* 연락처: 버튼 대신 라벨 + 값 + 화살표 행 */
+.signoff-actions { display: grid; min-width: 17em; }
+.contact-link {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .9em;
+  padding: .85em 0; border-top: 1px solid var(--rule-dark); color: var(--light); text-decoration: none;
+  transition: color .2s;
+}
+.contact-link:last-child { border-bottom: 1px solid var(--rule-dark); }
+.contact-badge {
+  display: grid; place-items: center; width: 2.5em; height: 2.5em; border-radius: 50%;
+  background: rgba(239, 189, 141, .12); border: 1px solid rgba(239, 189, 141, .3); color: var(--gold);
   transition: background .2s, color .2s;
 }
-.email-btn { background: var(--gold); color: var(--dark); }
-.email-btn:hover { background: var(--light); }
-.channel-btn { border: 1px solid rgba(239, 189, 141, .5); color: var(--gold); }
-.channel-btn:hover { background: rgba(239, 189, 141, .12); }
-.channel-btn img { width: 1.4em; height: auto; }
+.contact-badge svg { width: 1.2em; height: 1.2em; }
+.contact-link:hover .contact-badge, .contact-link:focus-visible .contact-badge { background: var(--gold); color: var(--dark); }
+.contact-label { display: block; color: var(--light-muted); font-size: .75em; letter-spacing: .08em; line-height: 1.3; }
+.contact-value { display: block; font-weight: 700; overflow-wrap: anywhere; }
+.contact-link > .icon { color: var(--gold); transition: transform .2s; }
+.contact-link:hover, .contact-link:focus-visible { color: var(--gold); }
+.contact-link:hover > .icon, .contact-link:focus-visible > .icon { transform: translate(.15em, -.15em); }
 
 /* 슬라이드 내비게이션: 프레임 아래 여백 가운데 */
 .slider-nav {
@@ -244,6 +253,7 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
   .tools li span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .steps { gap: 1.1em; }
   .signoff { padding: 1.1em; }
+  .signoff-actions { min-width: 0; }
   .wish { font-size: 1.3em; }
 }
 /* 인쇄·PDF 저장: 1600×900 한 장에 슬라이드 하나 */
@@ -259,7 +269,7 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
 }
 @media (prefers-reduced-motion: reduce) {
   main { scroll-behavior: auto; }
-  .slider-dots button, .slider-btn, .email-btn, .channel-btn { transition: none; }
+  .slider-dots button, .slider-btn, .contact-link, .contact-link > .icon, .contact-badge { transition: none; }
 }
   </style>
 </head>
@@ -376,7 +386,7 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
     <section class="slide full" aria-labelledby="terms-heading">
       <div class="frame">
         <div class="slide-body">
-          <p class="eyebrow">협업 조건 (초안)</p>
+          <p class="eyebrow">협업 조건</p>
           <h2 id="terms-heading">제가 먼저 제안드리는 기본값</h2>
           <p class="intro">세부 조건은 제작진과 협의해 정합니다.</p>
           <dl class="content terms">
@@ -401,7 +411,7 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
           <h2 id="contact-heading">답장 주시면 이렇게 진행합니다</h2>
           <ol class="content steps">
             <li><span class="step-no">01</span><h3>회신</h3><p>쇼츠로 만들고 싶은 회차나 주제를 알려 주세요.</p></li>
-            <li><span class="step-no">02</span><h3>짧은 통화</h3><p>15분 정도 통화로 톤, 검수 범위, 게시 일정을 맞춥니다.</p></li>
+            <li><span class="step-no">02</span><h3>미팅·커피챗</h3><p>편하신 시간에 만나 톤, 검수 범위, 게시 일정을 맞춥니다.</p></li>
             <li><span class="step-no">03</span><h3>구성안 확인</h3><p>대본, 장면 구성, 근거 표를 먼저 보내 드리고 확인을 받습니다.</p></li>
             <li><span class="step-no">04</span><h3>완성본 검수</h3><p>완성 영상을 보내 드리고, 제작진 의견을 반영해 수정합니다.</p></li>
             <li><span class="step-no">05</span><h3>게시·성과 공유</h3><p>승인된 영상을 게시하고, 2주 뒤 결과를 함께 봅니다.</p></li>
@@ -409,11 +419,11 @@ h3 { color: var(--accent); font-size: 1.1em; line-height: 1.4; }
           <div class="signoff">
             <div>
               <p class="wish">회차가 방송되는 동안 이야기가 식지 않도록,<br class="wide"> 《벌거벗은 한국사》 곁에서 빠르게 쇼츠를 만들겠습니다.</p>
-              <p class="signature"><img src="assets/channel-profile.png" width="80" height="80" alt="">역사 참견 시점 · 우형래 드림</p>
+              <p class="signature"><img src="assets/channel-profile.png" width="80" height="80" alt="">역사 참견 시점 드림</p>
             </div>
             <div class="signoff-actions">
-              <a class="email-btn" href="mailto:woohr1109@gmail.com">woohr1109@gmail.com</a>
-              <a class="channel-btn" href="https://www.youtube.com/channel/UC0MRTya2b3rdw8fb60_3U1g" target="_blank" rel="noopener"><img src="assets/youtube-icon.png" width="33" height="23" alt="">채널 둘러보기</a>
+              <a class="contact-link" href="mailto:woohr1109@gmail.com"><span class="contact-badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span><span><span class="contact-label">이메일</span><span class="contact-value">woohr1109@gmail.com</span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+              <a class="contact-link" href="https://www.youtube.com/channel/UC0MRTya2b3rdw8fb60_3U1g" target="_blank" rel="noopener"><span class="contact-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></span><span><span class="contact-label">유튜브</span><span class="contact-value">역사 참견 시점 채널</span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
             </div>
           </div>
         </div>
